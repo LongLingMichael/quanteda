@@ -7,6 +7,7 @@
 Wordstat dictionaries page, from Provalis Research
   \url{http://provalisresearch.com/products/content-analysis-software/wordstat-dictionary/}.
 
+
   Pennebaker, J.W., Chung, C.K., Ireland, M., Gonzales, A., & Booth, R.J.
   (2007). The development and psychometric properties of LIWC2007. [Software
   manual]. Austin, TX (\url{www.liwc.net}).
@@ -29,6 +30,8 @@ Inquiry and Word Count software} }}
 \item{enc}{optional encoding value for dictionaries imported in Wordstat
 format}
 
+\item{tolower}{if \code{TRUE}, convert all dictionary functions to lower}
+
 \item{maxcats}{optional maximum categories to which a word could belong in a
 LIWC dictionary file, defaults to 10 (which is more than the actual LIWC
 2007 dictionary uses).  The default value of 10 is likely to be more than
@@ -50,9 +53,15 @@ mydict <-
                     country="united states"))
 dfm(mycorpus, dictionary=mydict)
 \dontrun{
+# import the Laver-Garry dictionary from http://bit.ly/1FH2nvf
 lgdict <- dictionary(file="~/Dropbox/QUANTESS/dictionaries/Misc Provalis/LaverGarry.cat",
                      format="wordstat")
 dfm(inaugTexts, dictionary=lgdict)
+
+# import a LIWC formatted dictionary
+liwcdict <- dictionary(file = "~/Dropbox/QUANTESS/dictionaries/LIWC/LIWC2001_English.dic",
+                       format = "LIWC")
+dfm(inaugTexts, dictionary=liwcdict)
 }
 }
 \seealso{
